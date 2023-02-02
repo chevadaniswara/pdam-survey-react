@@ -10,7 +10,7 @@ function Alasan() {
     const [selectedItem, setSelectedItem] = useState('Pilih alasannya disini ya');
     const [formText, setFormText] = useState('');
 
-    // function untuk judul dropdownn
+    // function untuk judul dropdownnn
     const handleSelect = (eventKey) => {
         setSelectedItem(eventKey);
     }
