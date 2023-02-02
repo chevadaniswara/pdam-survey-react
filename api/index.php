@@ -47,14 +47,12 @@ switch($method) {
 
         case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE users SET name= :name, email =:email, telp =:telp, updated =:updated WHERE id = :id";
+            $sql = "UPDATE data_survey SET jenis= :jenis, jenis =:jenis, ulasan =:ulasan WHERE id = :id";
             $stmt = $conn->prepare($sql);
             $updated = date('Y-m-d');
-            $stmt->bindParam(':id', $user->id);
-            $stmt->bindParam(':name', $user->name);
-            $stmt->bindParam(':email', $user->email);
-            $stmt->bindParam(':telp', $user->telp);
-            $stmt->bindParam(':updated', $updated);
+            $stmt->bindParam(':jenis', $user->selectedItem);
+            $stmt->bindParam(':ulasan', $user->formText);
+            $stmt->bindParam(':created', $created);
     
             if($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];
@@ -65,7 +63,7 @@ switch($method) {
             break;
     
             case "DELETE":
-                $sql = "DELETE FROM users WHERE id = :id";
+                $sql = "DELETE FROM data_survey WHERE id = :id";
                 $path = explode('/', $_SERVER['REQUEST_URI']);
         
                 $stmt = $conn->prepare($sql);
