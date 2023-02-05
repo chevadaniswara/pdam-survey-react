@@ -13,7 +13,7 @@ function Home() {
                     <Col xs={6} className="text-center">
                         <p>Sebagai bentuk evaluasi kami agar dapat meningkatkan pelayanan kami kepada Anda, kami mohon dapat diisi survey pelayanan pelanggan yang kami sediakan. Kami sangat menghargai masukan dan kritik yang diberikan.</p>
                         <Button variant="primary" size="lg">
-                            <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to="/survey">
+                            <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to="/alasan">
                                 Mulai Survey
                             </Link>
                         </Button>

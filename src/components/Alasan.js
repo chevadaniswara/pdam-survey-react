@@ -22,25 +22,29 @@ function Alasan() {
             selectedItem,
             formText
         })
-        .then((res) => {
-            console.log(res);
-            navigate("/");
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((res) => {
+                console.log(res);
+                navigate("/");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     return (
         <div>
-            <h3>Adakah yang bisa kami tingkatkan?</h3>
-            <Dropdown handleSelect={handleSelect} selectedItem={selectedItem} />
             <Form onSubmit={handleFormSubmit}>
+                <h3>Isi nomor pelanggan dulu ya</h3>
+                <Form.Group className="mb-3 d-flex mx-auto" style={{ width: "50%" }} controlId="formBasicNopelanggan">
+                    <Form.Control type="number" step={null} placeholder="Cth: 12345689" />
+                </Form.Group>
+                <h3>Adakah yang bisa kami tingkatkan?</h3>
+                <Dropdown handleSelect={handleSelect} selectedItem={selectedItem} />
                 <Form.Group className="mb-3 d-flex mx-auto" style={{ width: "50%" }} controlId="texa_alasan">
-                    <Form.Control as="textarea" rows={3} onChange={(e) => setFormText(e.target.value)} />
+                    <Form.Control as="textarea" rows={3} onChange={(e) => setFormText(e.target.value)} placeholder="Staffnya sangat ramah dan membantu, saya dijelaskan satu persatu terkait..." />
                 </Form.Group>
                 <Button variant="primary" size="lg" type="submit">
-                        Selesaikan Survey
+                    Selesaikan Survey
                 </Button>
             </Form>
         </div>
