@@ -4,7 +4,7 @@
 	*/
 	class DbConnect {
 		private $server = 'localhost';
-		private $dbname = 'pdam-db';
+		private $dbname = 'pdam-db-1';
 		private $user = 'root';
 		private $pass = '';
 

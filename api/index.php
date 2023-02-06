@@ -12,7 +12,7 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
     case "GET":
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM data_survey";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         if(isset($path[3]) && is_numeric($path[3])) {
             $sql .= " WHERE id = :id";
@@ -31,9 +31,10 @@ switch($method) {
 
     case "POST":
         $user = json_decode(file_get_contents('php://input'));
-        $sql = "INSERT INTO data_survey(id, jenis, ulasan, created) VALUES(null, :jenis, :ulasan, :created)";
+        $sql = "INSERT INTO data_survey(id, no_pel, jenis, ulasan, created) VALUES(null, :no_pel, :jenis, :ulasan, :created)";
         $stmt = $conn->prepare($sql);
-        $created = date('Y-m-d');
+        $created = date('Y-m-d H:i:s');
+        $stmt->bindParam(':no_pel', $user->formNomorPelanggan);
         $stmt->bindParam(':jenis', $user->selectedItem);
         $stmt->bindParam(':ulasan', $user->formText);
         $stmt->bindParam(':created', $created);
@@ -51,10 +52,9 @@ switch($method) {
             $stmt = $conn->prepare($sql);
             $updated = date('Y-m-d');
             $stmt->bindParam(':id', $user->id);
-            $stmt->bindParam(':name', $user->name);
-            $stmt->bindParam(':email', $user->email);
-            $stmt->bindParam(':telp', $user->telp);
-            $stmt->bindParam(':updated', $updated);
+            $stmt->bindParam(':no_pel', $user->formNomorPelanggan);
+            $stmt->bindParam(':jenis', $user->selectedItem);
+            $stmt->bindParam(':ulasan', $user->formText);
     
             if($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];
