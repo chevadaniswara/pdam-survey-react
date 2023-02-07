@@ -2,6 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import undraw from '../assets/img/undraw.png';
+import logo from '../assets/img/logo_pdam 1.png'
 import Animations from './Animation';
 
 
@@ -11,6 +12,15 @@ function Home() {
         <Animations>
             <div>
                 <div style={{ textAlign: "center" }}>
+                    <img 
+                    src={logo} 
+                    alt="logo pdam delta tirta"
+                    style={{
+                        width:'100px',
+                        height:'120px',
+                        paddingBottom: '20px'
+                    }}
+                     />
                     <h3>PENILAIAN ANDA SANGAT BERHARGA</h3>
                     <img src={undraw} alt="illustrasi_homepg" />
                     <Row className="justify-content-center">
